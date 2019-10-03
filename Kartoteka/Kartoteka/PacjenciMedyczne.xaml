@@ -1,0 +1,310 @@
+﻿<Window x:Class="Kartoteka.PacjenciMedyczne"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kartoteka"
+        mc:Ignorable="d"
+        Title="Dane medyczne" Height="740" Width="1340" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <DataGrid CanUserAddRows="False" x:Name="dgDaneMedyczne" FontSize="18" AutoGenerateColumns="False" VerticalAlignment="Stretch" Margin="5" Width="1055" SelectionChanged="DgDaneMedyczne_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn IsReadOnly="True" Header="Problemy w ciąża" Binding="{Binding Problemy_ciaza}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Poród w terminie" Binding="{Binding Porod_w_terminie}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Poród poza terminem" Binding="{Binding Porod_poza_terminem}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Siłami natury" Binding="{Binding Porod_silami_natury}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Cesarskie cięcie planowane" Binding="{Binding Cesarskie_ciecie_planowane}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Cesarskie cięcie konieczność" Binding="{Binding Cesarskie_ciecie_koniecznosc}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Problemy po porodzie" Binding="{Binding Problemy_po_porodzie}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Wypisy badania medyczne" Binding="{Binding Wypisy_badania_medyczne}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Zauważone problemy" Binding="{Binding Zauwazone_problemy}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Informacje przetwarzanie sensorycznego" Binding="{Binding Informacje_przetwarzanie}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Inne schorzenia" Binding="{Binding Inne_schorzenia}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Pozycja supinacji" Binding="{Binding Pozycja_supinacji}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Pozycja pronacyjna" Binding="{Binding Pozycja_pronacyjna}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Pozycja boczna L" Binding="{Binding Pozycja_boczna_L}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Pozycja boczna P" Binding="{Binding Pozycja_boczna_P}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Pozycja siedząca" Binding="{Binding Pozycja_siedzaca}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Klęk podparty" Binding="{Binding Klek_podparty}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Klęk jednonóż" Binding="{Binding Klek_jednonoz}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Pozycja stojąca" Binding="{Binding Pozycja_stojaca}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Chód" Binding="{Binding Chod}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Próba trakcyjna" Binding="{Binding Proba_trakcyjna}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Symetria" Binding="{Binding Proba_trakcyjna_symetria}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Zawieszenie pronacyjne" Binding="{Binding Zawieszenie_pronacyjne}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Symetria" Binding="{Binding Zawieszenie_pronacyjne_symetria}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Zawieszenie boczne L" Binding="{Binding Zawieszenie_boczne_L}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Zawieszenie boczne P" Binding="{Binding Zawieszenie_boczne_P}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Asymetria" Binding="{Binding Zawieszenie_boczne_asymetryczne}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button x:Name="btnZapisz" FontSize="25" Width="259" Content="Zapisz" Margin="3,5,0,5" VerticalAlignment="Stretch" HorizontalAlignment="Right" Click="BtnZapisz_Click"/>
+        </StackPanel>
+        <Grid HorizontalAlignment="Left" Width="750" Grid.Row="1" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label FontSize="18" Height="60" Grid.Column="0" Grid.Row="0" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Problemy w trakcie ciąży
+                </TextBlock>
+            </Label>
+            <Label x:Name="lblPorod" FontSize="18" Height="34" Grid.Column="0" Grid.Row="2" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right" MouseLeftButtonDown="LblPorod_MouseLeftButtonDown">
+                <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Poród
+                </TextBlock>
+            </Label>
+            <Label FontSize="18" Height="34" Grid.Column="0" Grid.Row="3" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Problemy po porodzie
+                </TextBlock>
+            </Label>
+            <Label FontSize="18" Height="90" Grid.Column="0" Grid.Row="4" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Dane uzyskane z wypisów i badań medycznych
+                </TextBlock>
+            </Label>
+            <Label FontSize="18" Height="64" Grid.Column="0" Grid.Row="5" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Problemy zauważone przez rodziców
+                </TextBlock>
+            </Label>
+            <Label FontSize="18" Height="90" Grid.Column="0" Grid.Row="6" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Informacje dotyczące przetwarzania sensorycznego
+                </TextBlock>
+            </Label>
+            <Label FontSize="18" Height="34" Grid.Column="0" Grid.Row="7" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Inne schorzenia
+                </TextBlock>
+            </Label>
+            <Grid Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="140"/>
+                    <ColumnDefinition Width="140"/>
+                </Grid.ColumnDefinitions>
+                <Label FontSize="18" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock TextAlignment="Center" TextWrapping="WrapWithOverflow">
+                        W terminie
+                    </TextBlock>
+                </Label>
+                <Label FontSize="18" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock TextAlignment="Center" TextWrapping="WrapWithOverflow">
+                        Poza terminem
+                    </TextBlock>
+                </Label>
+                <Label FontSize="18" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock TextAlignment="Center" TextWrapping="WrapWithOverflow">
+                        Siłami natury
+                    </TextBlock>
+                </Label>
+                <Label FontSize="18" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock TextAlignment="Center" TextWrapping="WrapWithOverflow">
+                        Cesarskie cięcie planowane
+                    </TextBlock>
+                </Label>
+                <Label FontSize="18" Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock TextAlignment="Center" TextWrapping="WrapWithOverflow">
+                        Cesarskie cięcie z konieczności
+                    </TextBlock>
+                </Label>
+            </Grid>
+            <TextBox AcceptsReturn="True" x:Name="txtProWtrakCia" FontSize="18" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" VerticalAlignment="Stretch" TextChanged="TxtProWtrakCia_TextChanged"/>
+            <Grid Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="2" VerticalAlignment="Stretch">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="280"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Column="0" HorizontalAlignment="Center" Height="34" VerticalAlignment="Center" Width="150">
+                    <RadioButton x:Name="rbWterminie" FontSize="18" Margin="10,5,0,5" Content="X" Checked="RbWterminie_Checked"/>
+                    <RadioButton x:Name="rbPozaTerminem" FontSize="18" Margin="60,5,0,5" Content="X" Checked="RbPozaTerminem_Checked"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="2" HorizontalAlignment="Center" Height="34" VerticalAlignment="Center" Width="200">
+                    <RadioButton x:Name="rbPlanowane" FontSize="18" Margin="10,5,0,5" Content="X" Checked="RbPlanowane_Checked"/>
+                    <RadioButton x:Name="rbKoniecznosc" FontSize="18" Margin="110,5,0,5" Content="X" Checked="RbKoniecznosc_Checked"/>
+                </StackPanel>
+                <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch">
+                    <RadioButton x:Name="rbSilNatTak" FontSize="18" Content="Tak" Checked="RbSilNatTak_Checked"/>
+                    <RadioButton x:Name="rbSilNatNie" FontSize="18" Content="Nie" Checked="RbSilNatNie_Checked"/>
+                </StackPanel>
+            </Grid>
+            <TextBox AcceptsReturn="True" x:Name="txtProPoPor" FontSize="18" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" VerticalAlignment="Stretch" TextChanged="TxtProPoPor_TextChanged"/>
+            <TextBox AcceptsReturn="True" x:Name="txtDane" FontSize="18" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" VerticalAlignment="Stretch" TextChanged="TxtDane_TextChanged"/>
+            <TextBox AcceptsReturn="True" x:Name="txtProRodz" FontSize="18" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" VerticalAlignment="Stretch" TextChanged="TxtProRodz_TextChanged" GotFocus="TxtProRodz_GotFocus" LostFocus="TxtProRodz_LostFocus"/>
+            <TextBox AcceptsReturn="True" x:Name="txtInfPrzetSens" FontSize="18" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" VerticalAlignment="Stretch" TextChanged="TxtInfPrzetSens_TextChanged" GotFocus="TxtInfPrzetSens_GotFocus" LostFocus="TxtInfPrzetSens_LostFocus"/>
+            <TextBox AcceptsReturn="True" x:Name="txtInneSchorz" FontSize="18" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" VerticalAlignment="Stretch" TextChanged="TxtInneSchorz_TextChanged"/>
+        </Grid>
+        <Grid HorizontalAlignment="Right" Margin="0,60,0,0" Width="590" Grid.Row="1" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label FontSize="18" Height="60" Width="102" Grid.Column="0" Grid.Row="0" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Pozycja supinacyjna
+                </TextBlock>
+            </Label>
+            <Label FontSize="18" Height="60" Width="100" Grid.Column="0" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Pozycja pronacyjna
+                </TextBlock>
+            </Label>
+            <Label FontSize="18" Height="34" Grid.Column="0" Grid.Row="2" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Pozycja boczna L
+                </TextBlock>
+            </Label>
+            <Label FontSize="18" Height="34" Grid.Column="0" Grid.Row="3" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Pozycja boczna P
+                </TextBlock>
+            </Label>
+            <Label FontSize="18" Height="34" Grid.Column="0" Grid.Row="4" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Pozycja siedząca
+                </TextBlock>
+            </Label>
+            <Label FontSize="18" Height="34" Grid.Column="0" Grid.Row="5" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Klęk podparty
+                </TextBlock>
+            </Label>
+            <Label FontSize="18" Height="34" Grid.Column="0" Grid.Row="6" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Klęk jednonóż
+                </TextBlock>
+            </Label>
+            <Label FontSize="18" Height="34" Grid.Column="0" Grid.Row="7" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Pozycja stojąca
+                </TextBlock>
+            </Label>
+            <Label FontSize="18" Height="34" Grid.Column="0" Grid.Row="8" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Chód
+                </TextBlock>
+            </Label>
+            <TextBox AcceptsReturn="True" x:Name="txtPozSupi" FontSize="18" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" VerticalAlignment="Stretch" TextChanged="TxtPozSupi_TextChanged"/>
+            <TextBox AcceptsReturn="True" x:Name="txtPozPron" FontSize="18" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" VerticalAlignment="Stretch" TextChanged="TxtPozPron_TextChanged"/>
+            <TextBox AcceptsReturn="True" x:Name="txtPozBoczL" FontSize="18" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" VerticalAlignment="Stretch" TextChanged="TxtPozBoczL_TextChanged"/>
+            <TextBox AcceptsReturn="True" x:Name="txtPozBoczP" FontSize="18" Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" VerticalAlignment="Stretch" TextChanged="TxtPozBoczP_TextChanged"/>
+            <TextBox AcceptsReturn="True" x:Name="txtPozSiedz" FontSize="18" Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" VerticalAlignment="Stretch" TextChanged="TxtPozSiedz_TextChanged"/>
+            <TextBox AcceptsReturn="True" x:Name="txtKlekPod" FontSize="18" Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" VerticalAlignment="Stretch" TextChanged="TxtKlekPod_TextChanged"/>
+            <TextBox AcceptsReturn="True" x:Name="txtKlekJedno" FontSize="18" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" VerticalAlignment="Stretch" TextChanged="TxtKlekJedno_TextChanged"/>
+            <TextBox AcceptsReturn="True" x:Name="txtPozStoj" FontSize="18" Grid.Column="1" Grid.Row="7" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" VerticalAlignment="Stretch" TextChanged="TxtPozStoj_TextChanged"/>
+            <TextBox AcceptsReturn="True" x:Name="txtChod" FontSize="18" Grid.Column="1" Grid.Row="8" HorizontalAlignment="Stretch" Margin="5" TextWrapping="Wrap" VerticalAlignment="Stretch" TextChanged="TxtChod_TextChanged"/>
+        </Grid>
+        <Expander Header="                                              TESTY" FontSize="18" HorizontalAlignment="Left" Margin="769,15,0,0" Grid.Row="1" VerticalAlignment="Top" Width="552">
+            <Grid Background="#FFE5E5E5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="111"/>
+                    <RowDefinition Height="111"/>
+                    <RowDefinition Height="111"/>
+                    <RowDefinition Height="111"/>
+                    <RowDefinition Height="111"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="lblProbaTrakcyjna" FontSize="18" Height="60" Grid.Column="0" Grid.Row="0" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right" MouseLeftButtonDown="LblProbaTrakcyjna_MouseLeftButtonDown">
+                    <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Próba trakcyjna
+                    </TextBlock>
+                </Label>
+                <Label FontSize="18" Height="35" Grid.Column="2" Grid.Row="0" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Symetria
+                    </TextBlock>
+                </Label>
+                <Label x:Name="lblZawPro" FontSize="18" Height="60" Grid.Column="0" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right" MouseLeftButtonDown="LblZawPro_MouseLeftButtonDown">
+                    <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Zawieszenie pronacyjne
+                    </TextBlock>
+                </Label>
+                <Label FontSize="18" Height="35" Grid.Column="2" Grid.Row="1" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right">
+                    <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Symetria
+                    </TextBlock>
+                </Label>
+                <Label x:Name="lblZawBoczL" FontSize="18" Height="60" Grid.Column="0" Grid.Row="2" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right" MouseLeftButtonDown="LblZawBoczL_MouseLeftButtonDown">
+                    <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Zawieszenie boczne L
+                    </TextBlock>
+                </Label>
+                <Label x:Name="lblZawBoczP" FontSize="18" Height="60" Grid.Column="0" Grid.Row="3" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right" MouseLeftButtonDown="LblZawBoczP_MouseLeftButtonDown">
+                    <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Zawieszenie boczne P
+                    </TextBlock>
+                </Label>
+                <Label x:Name="lblZawBoczAs" FontSize="18" Height="90" Grid.Column="0" Grid.Row="4" Margin="0,0,5,0" VerticalAlignment="Center" HorizontalAlignment="Right" MouseLeftButtonDown="LblZawBoczAs_MouseLeftButtonDown">
+                    <TextBlock TextAlignment="Right" TextWrapping="WrapWithOverflow">
+                    Zawieszenie boczne asymetria
+                    </TextBlock>
+                </Label>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="5,0,0,0" Grid.Row="0" VerticalAlignment="Center" Width="115">
+                    <RadioButton x:Name="rbProbaTrakcyjnaTak" FontSize="18" Margin="10,5,0,5" Content="Tak" Checked="RbProbaTrakcyjnaTak_Checked"/>
+                    <RadioButton x:Name="rbProbaTrakcyjnaNie" FontSize="18" Margin="10,5,0,5" Content="Nie" Checked="RbProbaTrakcyjnaNie_Checked"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="3" HorizontalAlignment="Left" Height="34" Margin="5,0,0,0" Grid.Row="0" VerticalAlignment="Center" Width="115">
+                    <RadioButton x:Name="rbProbTrakSymTak" FontSize="18" Margin="10,5,0,5" Content="Tak" Checked="RbProbTrakSymTak_Checked"/>
+                    <RadioButton x:Name="rbProbTrakSymNie" FontSize="18" Margin="10,5,0,5" Content="Nie" Checked="RbProbTrakSymNie_Checked"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="5,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="115">
+                    <RadioButton x:Name="rbZawProTak" FontSize="18" Margin="10,5,0,5" Content="Tak" Checked="RbZawProTak_Checked"/>
+                    <RadioButton x:Name="rbZawProNie" FontSize="18" Margin="10,5,0,5" Content="Nie" Checked="RbZawProNie_Checked"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="3" HorizontalAlignment="Left" Height="34" Margin="5,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="115">
+                    <RadioButton x:Name="rbZawPronSymTak" FontSize="18" Margin="10,5,0,5" Content="Tak" Checked="RbZawPronSymTak_Checked"/>
+                    <RadioButton x:Name="rbZawPronSymNie" FontSize="18" Margin="10,5,0,5" Content="Nie" Checked="RbZawPronSymNie_Checked"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="5,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="115">
+                    <RadioButton x:Name="rbZawBoczLTak" FontSize="18" Margin="10,5,0,5" Content="Tak" Checked="RbZawBoczLTak_Checked"/>
+                    <RadioButton x:Name="rbZawBoczLNie" FontSize="18" Margin="10,5,0,5" Content="Nie" Checked="RbZawBoczLNie_Checked"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="5,0,0,0" Grid.Row="3" VerticalAlignment="Center" Width="115">
+                    <RadioButton x:Name="rbZawBoczPTak" FontSize="18" Margin="10,5,0,5" Content="Tak" Checked="RbZawBoczPTak_Checked"/>
+                    <RadioButton x:Name="rbZawBoczPNie" FontSize="18" Margin="10,5,0,5" Content="Nie" Checked="RbZawBoczPNie_Checked"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Left" Height="34" Margin="5,0,0,0" Grid.Row="4" VerticalAlignment="Center" Width="115">
+                    <RadioButton x:Name="rbZawBoczAsL" FontSize="18" Margin="10,5,0,5" Content="L" Checked="RbZawBoczAsL_Checked"/>
+                    <RadioButton x:Name="rbZawBoczAsP" FontSize="18" Margin="10,5,0,5" Content="P" Checked="RbZawBoczAsP_Checked"/>
+                </StackPanel>
+            </Grid>
+        </Expander>
+    </Grid>
+</Window>

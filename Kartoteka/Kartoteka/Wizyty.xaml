@@ -1,0 +1,60 @@
+﻿<Window x:Class="Kartoteka.Wizyty"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kartoteka"
+        mc:Ignorable="d"
+        Title="Wizyty" Height="740" Width="1340" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="240"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid CanUserAddRows="False" Grid.ColumnSpan="2" x:Name="dgWizyty" Margin="5" FontSize="18" Width="900" HorizontalAlignment="Left" VerticalAlignment="Stretch" Grid.Row="0" Grid.Column="0" AutoGenerateColumns="False" SelectionChanged="DgWizyty_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn IsReadOnly="True" Header="Data wizyty" Binding="{Binding Data_wizyty, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                <DataGridTextColumn IsReadOnly="True" Header="Zabiegi" Binding="{Binding Zabiegi}"/>
+                <DataGridTextColumn IsReadOnly="True" Header="Notatki" Binding="{Binding Notatki}"/>
+                <DataGridTextColumn IsReadOnly="True" Header="Zmiany" Binding="{Binding Zmiany}"/>
+                <DataGridTextColumn IsReadOnly="True" Header="Zalecenia" Binding="{Binding Zalecenia}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnZapisz" Grid.Column="1" FontSize="25" Margin="0,5,5,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="410" Height="114" Content="Zapisz" Click="BtnZapisz_Click"/>
+        <Button x:Name="btnDodajW" Grid.Column="1" FontSize="25" Margin="0,5,5,4" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="410" Height="114" Content="Dodaj wizytę" Click="BtnDodajW_Click"/>
+        <Grid HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="180"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Height="34" FontSize="18" Content="Data wizyty" HorizontalAlignment="Right" Margin="0,0,5,0"/>
+            <Label Grid.Column="0" Grid.Row="1" Height="34" FontSize="18" Content="Zabiegi" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+            <Label Grid.Column="0" Grid.Row="2" Height="34" FontSize="18" Content="Notatki" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+            <DatePicker x:Name="dpDataWizyty" FontSize="18" Grid.Column="1" Height="34" Grid.Row="0" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Center" Width="150" LostFocus="DpDataWizyty_LostFocus"/>
+            <TextBox AcceptsReturn="True" x:Name="txtZabiegi" TextWrapping="Wrap" FontSize="18" Grid.Row="1"  Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,10,5" TextChanged="TxtZabiegi_TextChanged"/>
+            <TextBox AcceptsReturn="True" x:Name="txtNotatki" TextWrapping="Wrap" FontSize="18" Grid.Row="2"  Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="5,5,10,5" TextChanged="TxtNotatki_TextChanged"/>
+        </Grid>
+        <Grid Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="34"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="34"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label FontSize="18" Content="Zmiany" Grid.Row="0" Height="34" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top"/>
+            <Label FontSize="18" Content="Zalecenia" Grid.Row="2" Height="34" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Top"/>
+            <TextBox AcceptsReturn="True" x:Name="txtZmiany" TextWrapping="Wrap" FontSize="18" HorizontalAlignment="Stretch" Grid.Row="1" Margin="5" VerticalAlignment="Stretch" TextChanged="TxtZmiany_TextChanged"/>
+            <TextBox AcceptsReturn="True" x:Name="txtZalecenia" TextWrapping="Wrap" FontSize="18" HorizontalAlignment="Stretch" Grid.Row="3" Margin="5" VerticalAlignment="Stretch" TextChanged="TxtZalecenia_TextChanged"/>
+        </Grid>
+    </Grid>
+</Window>

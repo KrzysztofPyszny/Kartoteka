@@ -1,0 +1,95 @@
+﻿<Window x:Class="Kartoteka.PacjenciOsobowe"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Kartoteka"
+        mc:Ignorable="d"        
+        Title="Dane osobowe" Height="740" Width="1340" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="335"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+            <Button x:Name="btnZapisz" Margin="5,0,5,0" Height="112" FontSize="25" Content="Zapisz" Click="BtnZapisz_Click"/>
+            <Button x:Name="btnDodajP" Margin="5,5,5,0" Height="112" FontSize="25" Content="Dodaj Pacjenta" Click="BtnDodajP_Click"/>
+            <Button x:Name="btnMedyczne" Margin="5,5,5,0" Height="112" FontSize="25" Content="Dane Medyczne" Click="BtnMedyczne_Click"/>
+            <Button x:Name="btnWizyty" Margin="5,5,5,0" Height="112" FontSize="25" Content="Wizyty" Click="BtnWizyty_Click"/>
+            <Button x:Name="btnZdjFil" Margin="5,5,5,0" Height="112" FontSize="25" Content="Zdjęcia/Filmy" Click="BtnZdjFil_Click"/>
+            <Button x:Name="btnPdfEksport" Margin="5,5,5,0" Height="112" FontSize="25" Content="Eksportuj do PDF" Click="BtnPdfEksport_Click"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="350">
+            <DockPanel Height="50" LastChildFill="False">
+                <ComboBox SelectedIndex="0" x:Name="cbWybor" Margin="50,0,0,0" FontSize="18" Height="34" VerticalAlignment="Center" Width="120" SelectionChanged="CbWybor_SelectionChanged">
+                    <ComboBoxItem>Nazwisko</ComboBoxItem>
+                    <ComboBoxItem>Imię</ComboBoxItem>
+                    <ComboBoxItem>Wszystko</ComboBoxItem>
+                </ComboBox>
+                <TextBox x:Name="txtWyszukaj" FontSize="18" Margin="30,0,0,0" Height="34" VerticalAlignment="Center" Width="400" TextChanged="TxtWyszukaj_TextChanged" GotFocus="TxtWyszukaj_GotFocus"/>
+            </DockPanel>
+            <DataGrid CanUserAddRows="False" x:Name="dgPacjenciOsobowe" Margin="10,0,10,0" FontSize="18" Height="300" AutoGenerateColumns="False" SelectionChanged="DgPacjenciOsobowe_SelectionChanged">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Visibility="Hidden" IsReadOnly="True" Header="ID" Binding="{Binding Id_pacjenta}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Nazwisko" Binding="{Binding Nazwisko}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Imię" Binding="{Binding Imie}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Data urodzenia" Binding="{Binding Data_urodzenia, StringFormat=\{0:dd.MM.yyyy\}}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Diagnoza medyczna" Binding="{Binding Diagnoza_medyczna}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="PESEL" Binding="{Binding PESEL}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Płeć" Binding="{Binding Plec}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Adres" Binding="{Binding Adres}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Rodzice" Binding="{Binding Rodzice}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Kod pocztowy" Binding="{Binding Kod_pocztowy}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Miejscowość" Binding="{Binding Miejscowosc}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Email" Binding="{Binding Email}"/>
+                    <DataGridTextColumn IsReadOnly="True" Header="Telefon" Binding="{Binding Telefon}"/>                                       
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="350">
+            <Grid Height="350">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label FontSize="18" Height="34" Content="Imię" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0"/>
+                <Label FontSize="18" Height="34" Content="Data urodzenia" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0"/>
+                <Label FontSize="18" Height="34" Content="PESEL" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"/>
+                <Label FontSize="18" Height="34" Content="Adres" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0"/>
+                <Label FontSize="18" Height="34" Content="Kod pocztowy" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0"/>
+                <Label FontSize="18" Height="34" Content="Email" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Grid.Row="5" Grid.Column="0"/>
+                <Label FontSize="18" Height="34" Content="Nazwisko" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2"/>
+                <Label FontSize="18" Height="34" Content="Diagnoza medyczna" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Grid.Row="1" Grid.Column="2"/>
+                <Label FontSize="18" Height="34" Content="Płeć" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2"/>
+                <Label FontSize="18" Height="34" Content="Rodzice" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2"/>
+                <Label FontSize="18" Height="34" Content="Miejscowość" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Grid.Row="4" Grid.Column="2"/>
+                <Label FontSize="18" Height="34" Content="Telefon" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Grid.Row="5" Grid.Column="2"/>
+                <TextBox x:Name="txtImie" Margin="10,0,0,0" FontSize="18" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" Width="200" TextChanged="TxtImie_TextChanged"/>
+                <TextBox x:Name="txtNazwisko" Margin="10,0,0,0" FontSize="18" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0" Grid.Column="3" Width="200" TextChanged="TxtNazwisko_TextChanged"/>
+                <DatePicker x:Name="dpDataUrodzenia" Margin="10,0,0,0" FontSize="18" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Width="200" LostFocus="DpDataUrodzenia_LostFocus"/>
+                <TextBox AcceptsReturn="True" TextWrapping="Wrap" x:Name="txtDiagnozaMedyczna" Margin="10,0,0,0" FontSize="18" Height="60" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Grid.Column="3" Width="200" TextChanged="TxtDiagnozaMedyczna_TextChanged"/>
+                <TextBox x:Name="txtPESEL" Margin="10,0,0,0" FontSize="18" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" Width="200" TextChanged="TxtPESEL_TextChanged"/>
+                <StackPanel Orientation="Horizontal" Grid.Column="3" Grid.Row="2" HorizontalAlignment="Left" Margin="10,0,0,0" Height="34" VerticalAlignment="Center" Width="150">
+                    <RadioButton x:Name="rbMezczyzna" FontSize="18" Margin="10,5,0,5" Content="M" Checked="RbMezczyzna_Checked"/>
+                    <RadioButton x:Name="rbKobieta" FontSize="18" Margin="60,5,0,5" Content="K" Checked="RbKobieta_Checked"/>
+                </StackPanel>
+                <TextBox x:Name="txtAdres" Margin="10,0,0,0" FontSize="18" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" Grid.Column="1" Width="200" TextChanged="TxtAdres_TextChanged"/>
+                <TextBox x:Name="txtRodzice" Margin="10,0,0,0" FontSize="18" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="3" Grid.Column="3" Width="200" TextChanged="TxtRodzice_TextChanged"/>
+                <TextBox x:Name="txtKodPocztowy" Margin="10,0,0,0" FontSize="18" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" Width="200" TextChanged="TxtKodPocztowy_TextChanged"/>
+                <TextBox x:Name="txtMiejscowosc" Margin="10,0,0,0" FontSize="18" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="4" Grid.Column="3" Width="200" TextChanged="TxtMiejscowosc_TextChanged"/>
+                <TextBox x:Name="txtEmail" Margin="10,0,0,0" FontSize="18" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="5" Grid.Column="1" Width="200" TextChanged="TxtEmail_TextChanged"/>
+                <TextBox x:Name="txtTelefon" Margin="10,0,0,0" FontSize="18" Height="34" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="5" Grid.Column="3" Width="200" TextChanged="TxtTelefon_TextChanged"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
